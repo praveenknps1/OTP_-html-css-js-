@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+           input{
+            display: block;
+            margin: 5px;
+            margin-left: 30px;
+        }
+      label{
+        margin-left: 30px;
+      }   
+   
+
+        body{
+            margin-top: 150px ;
+            margin-left: 700px;
+            background-color: rgba(0, 128, 128, 0.362);
+        }
+        div{
+           border: 2px solid;
+           width: 300px;
+           height: 300px;
+           display: inline-block;
+        }
+        h2{
+            color: rgb(225, 65, 150);
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+
+        <h2>   Login form </h2>
+
+    <form action="">
+
+<label for="">user name</label>
+<input type="text" placeholder="username" id="user">
+<label for="">password</label>
+<input type="text" placeholder="password" id="pass">
+
+<label for="">email</label>
+<input type="text" placeholder="email" id="mail">
+
+<label for="">OTP</label>
+<input type="text" placeholder="fill with otp" id="ott">
+
+<input type="button" value="login" id="register">
+
+
+    </form>
+
+</div>
+
+<script>
+var reg=document.getElementById("register")
+
+arr=[]
+
+reg.addEventListener("click", (e)=>{
+
+    e.preventDefault();
+
+    var user1=document.getElementById("user").value;
+    var pass1=document.getElementById("pass").value;
+    var mail1=document.getElementById("mail").value;
+    var  otp1=document.getElementById("ott").value;
+    
+
+    if(user1== ""||pass1==""||mail1==""){
+        alert(" fill the  required sections ")
+    }
+
+     // console.log(user1,pass1,mail1,cn_ps1,mobile1);
+
+
+     let data = JSON.parse(localStorage.getItem("register"))
+
+     console.log(data);
+
+    let ar=[]
+
+                for(i=0;i<data.length;i++){
+                    if(data[i]["userName"]==user1){
+                        ar.push(data[i])
+                    }
+                }
+                console.log(ar);
+
+         
+
+ if(ar.length>0){
+
+    
+ if(user1==data[0]["userName"]  && pass1==data[0]["passWord"]   && mail1==data[0]["mail"] && otp1==data[0]["OTP"]){
+
+alert(" login successful")
+}else if(pass1!==data[0]["passWord"] && pass1!==""  ){
+alert(" incorrect password ")
+}else if(mail1!==data[0]["mail"] && mail1!=="" ) {
+alert(" incorrect mail")
+}else if(otp1!==data[0]["OTP"] && otp1!=="" ){
+alert("invalid otp")
+}
+
+ }else{
+    // alert(" please register ")
+
+let cc= confirm(" please register ")
+if(cc){
+  window.location.assign("./index.html")
+}
+
+ }
+
+
+
+})
+
+</script>
+
+</body>
+</html>
